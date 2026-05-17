@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-theme-mode="system">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flowers for you</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-title">flowers for you</div>
+    <div class="topbar-actions">
+      <button class="icon-btn" id="theme-btn" type="button" title="theme">☼</button>
+      <button class="icon-btn" id="settings-btn" type="button" title="settings">⊹</button>
+    </div>
+  </div>
+
+  <div class="settings-overlay" id="settings-overlay"></div>
+  <div class="settings-panel" id="settings-panel">
+    <div class="settings-header">
+      <h2>settings</h2>
+      <button class="close-btn" id="close-settings-btn" type="button">x</button>
+    </div>
+    <div class="s-section">
+      <div class="s-label">appearance</div>
+      <div class="theme-grid" id="theme-grid" role="radiogroup" aria-label="theme">
+        <button class="theme-choice" type="button" data-theme-choice="system" aria-pressed="true">
+          <span class="theme-swatch system-swatch"></span>
+          <span>system</span>
+        </button>
+        <button class="theme-choice" type="button" data-theme-choice="light" aria-pressed="false">
+          <span class="theme-swatch light-swatch"></span>
+          <span>light</span>
+        </button>
+        <button class="theme-choice" type="button" data-theme-choice="dark" aria-pressed="false">
+          <span class="theme-swatch dark-swatch"></span>
+          <span>dark</span>
+        </button>
+        <button class="theme-choice" type="button" data-theme-choice="rose" aria-pressed="false">
+          <span class="theme-swatch rose-swatch"></span>
+          <span>rose</span>
+        </button>
+        <button class="theme-choice" type="button" data-theme-choice="sage" aria-pressed="false">
+          <span class="theme-swatch sage-swatch"></span>
+          <span>sage</span>
+        </button>
+        <button class="theme-choice" type="button" data-theme-choice="midnight" aria-pressed="false">
+          <span class="theme-swatch midnight-swatch"></span>
+          <span>midnight</span>
+        </button>
+      </div>
+    </div>
+    <div class="s-section">
+      <div class="s-label">about</div>
+      <div class="credit-block">
+        <span class="credit-name">made with love</span>
+        <p>by <a href="https://github.com/consolemaster81" target="_blank" rel="noopener">@consolemaster81</a><br><a href="https://github.com/consolemaster81/flowers-for-you" target="_blank" rel="noopener">view on github</a></p>
+      </div>
+    </div>
+  </div>
+
+  <main class="page active" id="page-builder">
+    <div class="split">
+      <section class="bouquet-panel" aria-label="bouquet preview">
+        <div class="bouquet-svg-wrap" id="builder-bouquet"></div>
+      </section>
+
+      <section class="form-panel">
+        <div class="form-hero">
+          <h1>flowers for you</h1>
+          <p>send a bouquet across the distance - no shipping required.</p>
+        </div>
+        <div class="step">
+          <div class="step-label">who is this for?</div>
+          <div class="step-hint">their name, a nickname, whatever you call them</div>
+          <input type="text" id="input-to" placeholder="my love..." maxlength="40">
+        </div>
+        <div class="step">
+          <div class="step-label">your name</div>
+          <div class="step-hint">so they know it's really from you</div>
+          <input type="text" id="input-from" placeholder="your name..." maxlength="40">
+        </div>
+        <div class="step">
+          <div class="step-label">pick your flowers</div>
+          <div class="step-hint">choose as many as you'd like</div>
+          <div class="flowers-grid" id="flowers-grid"></div>
+        </div>
+        <div class="step">
+          <div class="step-label">custom flower <span class="optional-label">- optional</span></div>
+          <div class="step-hint">upload a flower image or paste an image link</div>
+          <div class="custom-row">
+            <label class="file-pick">
+              <input type="file" id="custom-flower-file" accept="image/*">
+              <span>upload flower</span>
+            </label>
+            <input type="url" id="custom-flower-url" placeholder="flower image URL...">
+          </div>
+          <div class="custom-preview" id="custom-flower-preview"></div>
+        </div>
+        <div class="step">
+          <div class="step-label">style it</div>
+          <div class="step-hint">choose the background, font, theme, and optional picture frame</div>
+          <div class="customize-grid">
+            <label class="field-block">
+              <span>background color</span>
+              <input type="color" id="bg-color" value="#f5e6e0">
+            </label>
+            <label class="field-block">
+              <span>bouquet cone color</span>
+              <input type="color" id="wrap-color" value="#161412">
+            </label>
+            <label class="field-block">
+              <span>theme</span>
+              <select id="bouquet-theme">
+                <option value="system">system</option>
+                <option value="light">light</option>
+                <option value="dark">dark</option>
+                <option value="rose">rose</option>
+                <option value="sage">sage</option>
+                <option value="midnight">midnight</option>
+              </select>
+            </label>
+            <label class="field-block">
+              <span>font</span>
+              <select id="font-choice">
+                <option value="serif">romantic serif</option>
+                <option value="sans">clean sans</option>
+                <option value="script">soft script</option>
+                <option value="mono">typewriter</option>
+                <option value="custom">custom font name</option>
+              </select>
+            </label>
+            <label class="field-block custom-font-field" id="custom-font-field">
+              <span>custom font</span>
+              <input type="text" id="custom-font" placeholder="Georgia, serif">
+            </label>
+          </div>
+          <div class="media-field">
+            <span>background image</span>
+            <div class="custom-row">
+              <label class="file-pick">
+                <input type="file" id="bg-image-file" accept="image/*">
+                <span>upload background</span>
+              </label>
+              <input type="url" id="bg-image-url" placeholder="background image URL...">
+            </div>
+          </div>
+          <label class="check-row">
+            <input type="checkbox" id="frame-enabled">
+            <span>add a picture frame beside the bouquet</span>
+          </label>
+          <div class="media-field frame-controls" id="frame-controls">
+            <span>frame picture</span>
+            <div class="custom-row">
+              <label class="file-pick">
+                <input type="file" id="frame-image-file" accept="image/*">
+                <span>upload picture</span>
+              </label>
+              <input type="url" id="frame-image-url" placeholder="picture image URL...">
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-label">a note <span class="optional-label">- optional</span></div>
+          <div class="step-hint">words you'd say if you were there</div>
+          <textarea id="input-note" placeholder="I wish I could hand these to you myself..." maxlength="600"></textarea>
+        </div>
+        <div class="step">
+          <button class="generate-btn" id="generate-btn" type="button">create their bouquet <span aria-hidden="true">→</span></button>
+          <div class="error-msg" id="error-msg">please fill in both names and pick at least one flower</div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="site-footer">
+      <p>made with love by <a href="https://github.com/consolemaster81" target="_blank" rel="noopener">@consolemaster81</a> · <a href="https://github.com/consolemaster81/flowers-for-you" target="_blank" rel="noopener">github</a></p>
+    </footer>
+  </main>
+
+  <main class="page" id="page-viewer">
+    <div class="viewer-split">
+      <section class="viewer-bouquet-panel" aria-label="chosen bouquet">
+        <div class="petals-bg" id="petals-bg"></div>
+        <div class="viewer-feature">
+          <div class="viewer-bouquet-wrap" id="viewer-bouquet"></div>
+          <div class="picture-frame" id="picture-frame">
+            <img id="frame-image" alt="framed memory">
+            <span class="frame-placeholder">picture frame</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="letter-panel">
+        <button class="back-btn" id="back-btn" type="button">← make another</button>
+        <div class="share-box" id="share-box">
+          <div class="share-label">send this to them</div>
+          <div class="share-url" id="share-url-display"></div>
+          <button class="copy-btn" id="copy-btn" type="button">copy link</button>
+        </div>
+        <div class="envelope-stage" id="envelope-stage">
+          <button class="envelope" id="open-letter-btn" type="button" aria-label="open letter">
+            <span class="envelope-back"></span>
+            <span class="envelope-letter">
+              <span class="envelope-name" id="envelope-to"></span>
+              <span class="envelope-line"></span>
+              <span class="envelope-mini">open letter</span>
+            </span>
+            <span class="envelope-front"></span>
+            <span class="envelope-flap"></span>
+            <span class="envelope-seal"></span>
+          </button>
+        </div>
+        <div class="letter-content" id="letter-content">
+          <div class="v-from-label">a bouquet, just for you</div>
+          <div class="v-recipient" id="v-to"></div>
+          <div class="v-bouquet-display" id="v-bouquet"></div>
+          <div class="v-divider" id="v-divider"></div>
+          <div class="v-note" id="v-note"></div>
+          <div class="v-sender">with love,<br><span class="v-sender-name" id="v-from"></span></div>
+          <div class="footer-poem">distance is temporary. love is not.</div>
+        </div>
+      </section>
+    </div>
+    <button class="recipient-cta" id="recipient-cta" type="button">
+      <span>wanna try "flowers for you"?</span>
+      <span>make a note for your beloved</span>
+    </button>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
